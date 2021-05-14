@@ -5,7 +5,7 @@ import Search from "./Search";
 import Recipes from "./Recipes.js";
 
 function App() {
-  const [ingredients, setIngredients] = useState();
+  const [ingredients, setIngredients] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [recipe, setRecipe] = useState([]);
   const apiKey = `1303de381eab40eb93ebeace5ea53832`;
@@ -15,12 +15,13 @@ function App() {
     setIngredients(event.target.value);
   }
   function searchRecipe(event) {
+    setRecipe([]);
     event.preventDefault();
     axios.get(url).then(urlResponse);
+    setIngredients("");
   }
 
   function urlResponse(response) {
-    console.log(response);
     response.data.results.map(function (results, index) {
       return setRecipe((prevRecipe) => {
         return [
@@ -40,7 +41,11 @@ function App() {
       <div className="container">
         <h1>Welcome to Recipees</h1>
         <h2>Let's find the perfect recipe for you!</h2>
-        <Search handleChange={handleChange} searchRecipe={searchRecipe} />
+        <Search
+          handleChange={handleChange}
+          searchRecipe={searchRecipe}
+          ingredients={ingredients}
+        />
         <Recipes recipe={recipe} isVisible={isVisible} />
       </div>
     </div>

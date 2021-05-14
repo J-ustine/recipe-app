@@ -23,6 +23,7 @@ export default function Search(props) {
         type="text"
         placeholder="Enter an ingredient"
         onChange={props.handleChange}
+        value={props.ingredients}
       />
       <input type="submit" />
     </form>
