@@ -8,15 +8,33 @@ function App() {
   const [ingredients, setIngredients] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [recipe, setRecipe] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
+  const [isVegetarian, setIsVegetarian] = useState("");
   const apiKey = `1303de381eab40eb93ebeace5ea53832`;
-  const url = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}&number=10&apiKey=${apiKey}`;
+  let url = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}${isVegetarian}&number=20&apiKey=${apiKey}`;
+
+  console.log(isChecked);
+
+  function checked(event) {
+    console.log(event.target.value);
+    setIsChecked(!isChecked.value);
+    if (event.target.value === "Vegetarian") {
+      setIsVegetarian("&diet=vegetarian");
+    } else {
+      if (event.target.value === "Gluten free") {
+        setIsVegetarian("&diet=glutenfree");
+      } else {
+        setIsVegetarian("&diet=vegan");
+      }
+    }
+  }
 
   function handleChange(event) {
     setIngredients(event.target.value);
   }
   function searchRecipe(event) {
-    setRecipe([]);
     event.preventDefault();
+    setRecipe([]);
     axios.get(url).then(urlResponse);
     setIngredients("");
   }
@@ -39,12 +57,12 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>Welcome to Recipees</h1>
-        <h2>Let's find the perfect recipe for you!</h2>
+        <header>Recipees</header>
         <Search
           handleChange={handleChange}
           searchRecipe={searchRecipe}
           ingredients={ingredients}
+          checked={checked}
         />
         <Recipes recipe={recipe} isVisible={isVisible} />
       </div>
