@@ -9,22 +9,21 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
   const [recipe, setRecipe] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
-  const [isVegetarian, setIsVegetarian] = useState("");
+  const [diet, setDiet] = useState("");
   const apiKey = `1303de381eab40eb93ebeace5ea53832`;
-  let url = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}${isVegetarian}&number=20&apiKey=${apiKey}`;
+  let url = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}${diet}&number=20&apiKey=${apiKey}`;
 
   console.log(isChecked);
 
   function checked(event) {
-    console.log(event.target.value);
     setIsChecked(!isChecked.value);
     if (event.target.value === "Vegetarian") {
-      setIsVegetarian("&diet=vegetarian");
+      setDiet("&diet=vegetarian");
     } else {
       if (event.target.value === "Gluten free") {
-        setIsVegetarian("&diet=glutenfree");
+        setDiet("&diet=glutenfree");
       } else {
-        setIsVegetarian("&diet=vegan");
+        setDiet("&diet=vegan");
       }
     }
   }

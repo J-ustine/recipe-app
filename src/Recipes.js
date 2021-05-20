@@ -10,9 +10,9 @@ export default function Recipes(props) {
               <img src={recipe.image} className="card-img-top" alt="..." />
               <div className="card-body">
                 <h5 className="card-title">{recipe.title}</h5>
-                <a href="#" className="btn btn-outline-secondary">
+                <button href="#" className="btn btn-outline-secondary">
                   Check the recipe details
-                </a>
+                </button>
               </div>
             </div>
           );
