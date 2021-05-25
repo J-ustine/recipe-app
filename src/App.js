@@ -10,20 +10,29 @@ function App() {
   const [recipe, setRecipe] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [diet, setDiet] = useState("");
+  const [id, setId] = useState("");
   const apiKey = `1303de381eab40eb93ebeace5ea53832`;
   let url = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}${diet}&number=20&apiKey=${apiKey}`;
-
-  console.log(isChecked);
+  let urlRecipeDetail = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${apiKey}`;
 
   function checked(event) {
-    setIsChecked(!isChecked.value);
-    if (event.target.value === "Vegetarian") {
+    setIsChecked(!isChecked);
+    console.log(event.target.value);
+    if (event.target.value === "Vegetarian" && !isChecked) {
       setDiet("&diet=vegetarian");
     } else {
-      if (event.target.value === "Gluten free") {
-        setDiet("&diet=glutenfree");
+      if (event.target.value === "Gluten Free" && !isChecked) {
+        setDiet("&diet=nogluten");
       } else {
-        setDiet("&diet=vegan");
+        if (event.target.value === "Ketogenic" && !isChecked) {
+          setDiet("&diet=ketogenic");
+        } else {
+          if (event.target.value === "Vegan" && !isChecked) {
+            setDiet("&diet=vegan");
+          } else {
+            setDiet("");
+          }
+        }
       }
     }
   }
@@ -35,7 +44,13 @@ function App() {
     event.preventDefault();
     setRecipe([]);
     axios.get(url).then(urlResponse);
-    setIngredients("");
+  }
+
+  function detailsId(event) {
+    setId(event.target.value);
+  }
+  function details() {
+    axios.get(urlRecipeDetail).then(console.log(urlRecipeDetail));
   }
 
   function urlResponse(response) {
@@ -44,6 +59,7 @@ function App() {
         return [
           ...prevRecipe,
           {
+            id: results.id,
             title: results.title,
             image: results.image,
           },
@@ -63,7 +79,14 @@ function App() {
           ingredients={ingredients}
           checked={checked}
         />
-        <Recipes recipe={recipe} isVisible={isVisible} />
+        <Recipes
+          recipe={recipe}
+          details={details}
+          detailsId={detailsId}
+          diet={diet}
+          ingredients={ingredients}
+          isVisible={isVisible}
+        />
       </div>
     </div>
   );

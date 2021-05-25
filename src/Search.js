@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Search(props) {
-  const regime = ["Vegetarian", "Vegan", "Gluten Free", "Lacteos free"];
+  const regime = ["Vegetarian", "Vegan", "Gluten Free", "Ketogenic"];
 
   return (
     <form onSubmit={props.searchRecipe}>
