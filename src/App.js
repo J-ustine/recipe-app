@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 import NavBar from "./NavBar";
-import Filter from "./Filter";
 import Recipes from "./Recipes";
 import Footer from "./Footer";
 
@@ -63,6 +62,7 @@ function App() {
   }
 
   function urlResponse(response) {
+    console.log(response);
     response.data.results.map(function (results, index) {
       return setRecipe((prevRecipe) => {
         return [
@@ -77,17 +77,12 @@ function App() {
     });
     setIsVisible(true);
   }
+  console.log(ingredients);
 
   return (
     <div className="App">
       <div className="container">
         <NavBar
-          handleChange={(event) => setIngredients(event.target.value)}
-          searchRecipe={searchRecipe}
-          ingredients={ingredients}
-          checked={checked}
-        />
-        <Filter
           handleChange={(event) => setIngredients(event.target.value)}
           searchRecipe={searchRecipe}
           ingredients={ingredients}
