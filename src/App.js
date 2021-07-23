@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-import Search from "./Search";
-import Recipes from "./Recipes.js";
+import NavBar from "./NavBar";
+import Filter from "./Filter";
+import Recipes from "./Recipes";
+import Footer from "./Footer";
 
 function App() {
   const [ingredients, setIngredients] = useState("");
@@ -10,14 +12,14 @@ function App() {
   const [recipe, setRecipe] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [diet, setDiet] = useState("");
+  const [ready20min, setReady20min] = useState("");
   const [id, setId] = useState("");
   const apiKey = `1303de381eab40eb93ebeace5ea53832`;
-  let url = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}${diet}&number=20&apiKey=${apiKey}`;
+  let url = `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}${diet}${ready20min}&number=20&apiKey=${apiKey}`;
   let urlRecipeDetail = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${apiKey}`;
 
   function checked(event) {
     setIsChecked(!isChecked);
-    console.log(event.target.value);
     if (event.target.value === "Vegetarian" && !isChecked) {
       setDiet("&diet=vegetarian");
     } else {
@@ -30,27 +32,34 @@ function App() {
           if (event.target.value === "Vegan" && !isChecked) {
             setDiet("&diet=vegan");
           } else {
-            setDiet("");
+            if (event.target.value === "Ready in 20min" && !isChecked) {
+              setReady20min("&maxReadyTime=20");
+            } else {
+              setDiet("");
+              setReady20min("");
+            }
           }
         }
       }
     }
   }
 
-  function handleChange(event) {
-    setIngredients(event.target.value);
-  }
   function searchRecipe(event) {
     event.preventDefault();
     setRecipe([]);
     axios.get(url).then(urlResponse);
   }
 
-  function detailsId(event) {
-    setId(event.target.value);
+  function recipeDetail() {
+    return (
+      <div className="collapse" id="collapseExample">
+        <div className="card card-body">hello</div>
+      </div>
+    );
   }
+
   function details() {
-    axios.get(urlRecipeDetail).then(console.log(urlRecipeDetail));
+    axios.get(urlRecipeDetail).then(recipeDetail);
   }
 
   function urlResponse(response) {
@@ -72,9 +81,14 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <header>Recipees</header>
-        <Search
-          handleChange={handleChange}
+        <NavBar
+          handleChange={(event) => setIngredients(event.target.value)}
+          searchRecipe={searchRecipe}
+          ingredients={ingredients}
+          checked={checked}
+        />
+        <Filter
+          handleChange={(event) => setIngredients(event.target.value)}
           searchRecipe={searchRecipe}
           ingredients={ingredients}
           checked={checked}
@@ -82,12 +96,13 @@ function App() {
         <Recipes
           recipe={recipe}
           details={details}
-          detailsId={detailsId}
+          detailsId={(event) => setId(event.target.value)}
           diet={diet}
           ingredients={ingredients}
           isVisible={isVisible}
         />
       </div>
+      <Footer />
     </div>
   );
 }

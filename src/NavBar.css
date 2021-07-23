@@ -1,0 +1,46 @@
+.navbar {
+  margin-bottom: 10px;
+}
+
+.navbar-brand {
+  font-family: "Sacramento", cursive;
+  font-size: 20px;
+  font-weight: 900;
+  background-color: #e60023;
+  border-radius: 100%;
+  padding: 2px 6px;
+  color: white;
+}
+
+.nav-link {
+  color: black;
+  border-radius: 20px;
+  font-weight: 700;
+  padding: 15px;
+  margin: 0 10px;
+  font-size: 15px;
+}
+
+.nav-link:hover {
+  background-color: rgba(211, 210, 210, 0.514);
+  color: black;
+}
+
+.active {
+  background-color: black;
+  color: white;
+}
+
+.active:hover {
+  background-color: black;
+  color: white;
+}
+
+.search {
+  border-radius: 18px;
+}
+
+.search:hover {
+  background-color: grey;
+  cursor: pointer;
+}

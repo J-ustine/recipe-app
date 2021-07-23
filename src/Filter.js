@@ -1,10 +1,11 @@
 import React from "react";
+import "./Filter.css";
 
-export default function Search(props) {
+export default function Filter(props) {
   const regime = ["Vegetarian", "Vegan", "Gluten Free", "Ketogenic"];
 
   return (
-    <form onSubmit={props.searchRecipe}>
+    <form>
       <div className="search-form">
         <div>
           {regime.map(function (regime, index) {
@@ -21,15 +22,15 @@ export default function Search(props) {
               </span>
             );
           })}
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="exampleCheck1"
+            value="Ready in 20min"
+            onChange={props.checked}
+          />
+          <label htmlFor="">Ready in 20min</label>
         </div>
-        <input
-          className="search"
-          type="text"
-          placeholder="Enter an ingredient"
-          onChange={props.handleChange}
-          value={props.ingredients}
-        />
-        <input type="submit" className="submit" />
       </div>
     </form>
   );

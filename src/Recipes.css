@@ -1,0 +1,28 @@
+/* .card {
+  margin-top: 50px;
+  width: 250px;
+}
+.card-img-top {
+  margin-top: 10px;
+}
+.card-title {
+  font-size: 20px;
+  text-align: justify;
+}
+.btn {
+  font-size: 0.9rem;
+} */
+
+.card-title {
+  font-weight: 700;
+}
+
+.card-img {
+  border-radius: 20px;
+  cursor: zoom-in;
+}
+
+.card-title {
+  margin: 5px 0 20px;
+  font-size: 15px;
+}
