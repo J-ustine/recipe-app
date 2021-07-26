@@ -7,7 +7,7 @@ export default function Filter(props) {
   return (
     <form>
       <div className="search-form">
-        <div>
+        {/* <div>
           {regime.map(function (regime, index) {
             return (
               <span className="form" key={index}>
@@ -30,7 +30,7 @@ export default function Filter(props) {
             onChange={props.checked}
           />
           <label htmlFor="">Ready in 20min</label>
-        </div>
+        </div> */}
       </div>
     </form>
   );

@@ -2,19 +2,29 @@ import React from "react";
 import "./NavBar.css";
 
 export default function NavBar(props) {
-  console.log(props.searchRecipe);
   return (
     <div className="navbar navbar-expand-lg navbar-white">
       <div className="container-fluid">
-        <div className="navbar-brand" href="#">
+        <div className="navbar-brand" href="#" onClick={props.test}>
           R
         </div>
         <div className="collapse navbar-collapse">
           <div className="navbar-nav nav-fill w-100">
-            <a className="nav-link active p-3" aria-current="page" href="/">
+            <a
+              className="nav-link active p-3"
+              aria-current="page"
+              href="/"
+              onClick={props.randomRecipe}
+              id="home"
+            >
               Home
             </a>
-            <a className="nav-link p-3" href="/">
+            <a
+              className="nav-link p-3"
+              href="/"
+              onClick={props.seasonRecipe}
+              id="loved"
+            >
               The most loved
             </a>
             <form className="d-flex input-group" onSubmit={props.searchRecipe}>
