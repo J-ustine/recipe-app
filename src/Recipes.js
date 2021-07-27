@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./Recipes.css";
 import InfiniteScroll from "react-infinite-scroll-component";

@@ -2,6 +2,7 @@ import React from "react";
 import "./NavBar.css";
 
 export default function NavBar(props) {
+  console.log(props.active[0]);
   return (
     <div className="navbar navbar-expand-lg navbar-white">
       <div className="container-fluid">
@@ -11,7 +12,9 @@ export default function NavBar(props) {
         <div className="collapse navbar-collapse">
           <div className="navbar-nav nav-fill w-100">
             <a
-              className="nav-link active p-3"
+              className={
+                props.active[0] ? "nav-link p-3 active" : "nav-link p-3"
+              }
               aria-current="page"
               href="/"
               onClick={props.randomRecipe}
@@ -20,12 +23,14 @@ export default function NavBar(props) {
               Home
             </a>
             <a
-              className="nav-link p-3"
+              className={
+                props.active[1] ? "nav-link p-3 active" : "nav-link p-3"
+              }
               href="/"
               onClick={props.seasonRecipe}
-              id="loved"
+              id="season"
             >
-              The most loved
+              Seasonal Recipes
             </a>
             <form className="d-flex input-group" onSubmit={props.searchRecipe}>
               <input

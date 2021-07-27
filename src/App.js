@@ -6,6 +6,7 @@ import Recipes from "./Recipes";
 import Footer from "./Footer";
 
 export default function App() {
+  const [active, setActive] = useState([true, false]);
   const [ingredients, setIngredients] = useState("");
   const [recipe, setRecipe] = useState([]);
   const [numberResult, setNumberResult] = useState(20);
@@ -37,6 +38,7 @@ export default function App() {
   }
 
   function randomRecipe(event) {
+    setActive([!active[0], active[1] ? !active[1] : active[1]]);
     event.preventDefault();
     setRecipe([]);
     axios.get(urlRandom).then((response) => {
@@ -56,6 +58,7 @@ export default function App() {
   }
 
   function seasonRecipe(event) {
+    setActive([active[0] ? !active[0] : active[0], !active[1]]);
     event.preventDefault();
     setRecipe([]);
     axios.get(urlSeason).then((response) => {
@@ -88,6 +91,7 @@ export default function App() {
           ingredients={ingredients}
           randomRecipe={randomRecipe}
           seasonRecipe={seasonRecipe}
+          active={active}
         />
         <Recipes
           recipe={recipe}
