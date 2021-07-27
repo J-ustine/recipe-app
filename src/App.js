@@ -15,24 +15,6 @@ export default function App() {
   let urlRandom = `https://api.spoonacular.com/recipes/random?number=${numberResult}&apiKey=${apiKey}`;
   let urlSeason = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${season}&number=${numberResult}&apiKey=${apiKey}`;
 
-  function searchRecipe(event) {
-    event.preventDefault();
-    setRecipe([]);
-    axios.get(url).then(urlResponse);
-  }
-
-  function randomRecipe(event) {
-    event.preventDefault();
-    setRecipe([]);
-    axios.get(urlRandom).then(randomUrlResponse);
-  }
-
-  function seasonRecipe(event) {
-    event.preventDefault();
-    setRecipe([]);
-    axios.get(urlSeason).then(seasonUrlResponse);
-  }
-
   function urlResponse(response) {
     response.data.results.map(function (results, index) {
       return setRecipe((prevRecipe) => {
@@ -48,32 +30,46 @@ export default function App() {
     });
   }
 
-  function randomUrlResponse(response) {
-    response.data.recipes.map(function (results, index) {
-      return setRecipe((prevRecipe) => {
-        return [
-          ...prevRecipe,
-          {
-            id: results.id,
-            title: results.title,
-            image: results.image,
-          },
-        ];
+  function searchRecipe(event) {
+    event.preventDefault();
+    setRecipe([]);
+    axios.get(url).then(urlResponse);
+  }
+
+  function randomRecipe(event) {
+    event.preventDefault();
+    setRecipe([]);
+    axios.get(urlRandom).then((response) => {
+      response.data.recipes.map(function (results, index) {
+        return setRecipe((prevRecipe) => {
+          return [
+            ...prevRecipe,
+            {
+              id: results.id,
+              title: results.title,
+              image: results.image,
+            },
+          ];
+        });
       });
     });
   }
 
-  function seasonUrlResponse(response) {
-    response.data.map(function (results, index) {
-      return setRecipe((prevRecipe) => {
-        return [
-          ...prevRecipe,
-          {
-            id: results.id,
-            title: results.title,
-            image: results.image,
-          },
-        ];
+  function seasonRecipe(event) {
+    event.preventDefault();
+    setRecipe([]);
+    axios.get(urlSeason).then((response) => {
+      response.data.map(function (results, index) {
+        return setRecipe((prevRecipe) => {
+          return [
+            ...prevRecipe,
+            {
+              id: results.id,
+              title: results.title,
+              image: results.image,
+            },
+          ];
+        });
       });
     });
   }
@@ -98,6 +94,7 @@ export default function App() {
           ingredients={ingredients}
           addResult={addResult}
           page={numberResult}
+          apiKey={apiKey}
         />
       </div>
       <Footer />

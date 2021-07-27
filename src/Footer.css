@@ -1,5 +1,29 @@
-/* .footer {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 20px;
-} */
+#footer {
+  padding: 5px 0;
+  color: #23374d;
+  font-size: 13px;
+  text-align: left;
+}
+
+.red {
+  text-align: right;
+  padding-top: 25px;
+}
+
+i {
+  margin: 0 5px 0 20px;
+}
+
+#footer a {
+  color: #23374d;
+  text-decoration: none;
+}
+
+#footer img {
+  opacity: 0.2;
+  width: 100px;
+}
+
+.brand {
+  text-align: right;
+}
