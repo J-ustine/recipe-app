@@ -34,6 +34,11 @@
   color: white;
 }
 
+a.nav-link:focus,
+a.nav-link:active {
+  color: white;
+}
+
 .search {
   border-radius: 18px;
   border: transparent;

@@ -2,7 +2,6 @@ import React from "react";
 import "./NavBar.css";
 
 export default function NavBar(props) {
-  console.log(props.active[0]);
   return (
     <div className="navbar navbar-expand-lg navbar-white">
       <div className="container-fluid">
