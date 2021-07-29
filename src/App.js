@@ -78,8 +78,10 @@ export default function App() {
   }
 
   function addResult() {
-    setNumberResult(numberResult + 10);
-    axios.get(url).then(urlResponse);
+    if (numberResult < 42) {
+      setNumberResult(numberResult + 10);
+      axios.get(url).then(urlResponse);
+    }
   }
 
   return (
