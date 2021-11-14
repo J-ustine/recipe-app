@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./App.css";
-import NavBar from "./NavBar";
-import Recipes from "./Recipes";
-import Footer from "./Footer";
+import NavBar from "./components/NavBar";
+import Recipes from "./components/Recipes";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [active, setActive] = useState([true, false]);

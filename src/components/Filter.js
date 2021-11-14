@@ -1,5 +1,4 @@
 import React from "react";
-import "./Filter.css";
 
 export default function Filter(props) {
   const regime = ["Vegetarian", "Vegan", "Gluten Free", "Ketogenic"];

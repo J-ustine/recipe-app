@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Recipes.css";
+import "../style/Recipes.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Recipes(props) {

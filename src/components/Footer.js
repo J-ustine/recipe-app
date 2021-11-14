@@ -1,6 +1,6 @@
 import React from "react";
-import "./Footer.css";
-import Image1 from "./favicon.png";
+import "../style/Footer.css";
+import Image1 from "../style/favicon.png";
 
 export default function Footer() {
   let date = new Date();
